@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      {% load leaflet_tags %}
+      {% load i18n %}
+      {% load staticfiles %}
+      {% leaflet_js %}
+      {% leaflet_css %}
+      {% load geojson_tags %}
+      {% load bootstrap3 %}
+      {% load bootstrap_toolkit %}
+      <meta charset="utf-8">
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+      <title>AgriDSS - {% block title %}Mapping Portal!{% endblock %}</title>
+      <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="shortcut icon" href="{% static 'smart/img/favicon.ico' %}">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Le styles -->
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+      <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="{% static 'smart/css/leaflet.fusesearch.css' %}" />
+      <link rel="stylesheet" href="{% static 'smart/css/bootstrap.min.css'%}">
+      <link rel="stylesheet" href="{% static 'smart/css/bootstrap-responsive.min.css'%}">
+      <link rel="stylesheet" href="{% static 'smart/css/leaflet-routing-machine.css' %}" />
+      <link rel="stylesheet" href="{% static 'smart/css/Control.Geocoder.css' %}" />
+      <link rel="stylesheet" href="{% static 'smart/css/easy-button.css' %}" />
+      <link rel="stylesheet" href="{% static 'smart/css/MarkerCluster.css' %}" />
+      <link rel="stylesheet" href="{% static 'smart/css/MarkerCluster.Default.css' %}" />
+      <link href="{% static 'smart/css/bootplus.css' %}" rel="stylesheet">
+      <link href="{% static 'smart/css/leaflet.awesome-markers.css' %}" rel="stylesheet">
+      <link rel="stylesheet" href="{% static 'smart/css/font-awesome.min.css'%}">
+      <link rel="stylesheet" href="{% static 'smart/css/style.css' %}" />
+      <link rel="stylesheet" href="{% static 'smart/css/leaflet.label.css' %}" />
+      <link rel="stylesheet" href="{% static 'smart/css/leaflet-search.css' %}" />
+      <link rel="stylesheet" href="{% static 'smart/css/leaflet-zoomhome.css' %}" />
+      <link rel="stylesheet" href="{% static 'smart/css/leaflet-measure.css' %}" />
+      <link rel="stylesheet" href="{% static 'smart/css/L.Control.ZoomMin.css' %}" />
+      <link rel="stylesheet" href="{% static 'smart/css/L.Control.Sidebar.css' %}" />
+      <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.2/leaflet.fullscreen.css' rel='stylesheet' />
+      <link rel="stylesheet" href="{% static 'smart/css/leaflet.fusesearch.css' %}" />
+      
+      <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+      <script src="{% static 'smart/js/jquery-1.10.2.js' %}"></script>
+      <script src="{% static 'smart/js/leaflet-routing-machine.js' %}"></script>
+      <script src="{% static 'smart/js/Control.Geocoder.js' %}"></script>
+      <script src="{% static 'smart/js/easy-button.js' %}"></script>
+      <script src="{% static 'smart/js/leaflet.markercluster-src.js' %}"></script>
+      <script type="text/javascript" src="{% static 'smart/js/leaflet.label.js' %}" ></script>
+      <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.2/Leaflet.fullscreen.min.js'></script>
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+      <script type="text/javascript" src="{% static 'smart/js/fuse.js' %}"></script>
+      <script type="text/javascript" src="{% static 'smart/js/leaflet.awesome-markers.js' %}"></script>
+      <script type="text/javascript" src="{% static 'smart/js/leaflet-measure.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'smart/js/leaflet.fusesearch.js' %}"></script>
+      <script type="text/javascript" src="{% static 'smart/js/leaflet.zoomhome.js' %}"></script>
+      <script type="text/javascript" src="{% static 'smart/js/jquery.js' %}"></script>
+      <script type="text/javascript" src="{% static 'smart/js/bootstrap.js' %}"></script>
+       <script src="http://www.jqueryscript.net/demo/jQuery-Plugin-To-Print-Any-Part-Of-Your-Page-Print/jQuery.print.js"></script>
+      <script type="text/javascript" src="{% static 'smart/js/L.Control.ZoomMin.js' %}"></script>
+      <script type="text/javascript" src="{% static 'smart/js/L.Control.Sidebar.js' %}"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+      <style>
+        .map {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+      </style>
+      <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 10px;
+      }
+      .hero-unit {
+          padding: 60px;
+      }
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+      </style>
+      <link href="{% static 'smart/css/bootplus-responsive.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+   </head>
+
+   <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Map Viewer</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="printBtn"><i class="fa fa-pencil fa-fw white"></i>&nbsp;&nbsp;Print Map</a></li>
+              <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <i class="icon-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'apply' %}">Apply for Services</a></li>
+                                <li><a href="{% url 'status' %}">Application Status</a></li>
+                                <li><a href="{% url 'incidences' %}">Report Incidences</a></li>
+                                <li><a href="{% url 'map' %}">Map Portal</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{% url 'indexs' %}">Latest News</a></li>
+                                <li><a href="{% url 'cropindex' %}">Crops info</a></li>
+                            </ul>
+                        </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">User Login</h4>
+          </div>
+          <div class="modal-body" align="center">
+            <form class="form-signin" role="form" method="post" action="{% url 'login' %}" align="center">
+                  {% csrf_token %}
+                  <h2 class="form-signin-heading">Please sign in</h2><br>
+                  <input class="form-control" placeholder="Username" id="id_username" maxlength="160" name="username" type="text" required autofocus=""/><br> 
+                  <input type="password" class="form-control" placeholder="Password" id="id_password" name="password" type="password" required /><br>
+                  <button class="btn btn-large btn-primary" type="submit" value="Submit" />Sign in</button>
+            </form>
+                  <p>Forgot Password? Visit <a href="{% url 'django.contrib.auth.views.password_reset' %}">Here</a> </p> 
+                  <p>No account? <a href="/register/">Sign Up</a> </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="row-fluid">
+               <div class="card">
+                  <div class="card-body">
+                    <div id="map"></div>
+                    <script src= "{% static 'smart/js/map/map.js' %}"></script>
+                  </div>
+               </div>
+          </div><!--/row-->
+        </div><!--/span-->
+      </div>
+      <!--/row-->
+    </div>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'smart/js/jquery.js'%}"></script>
+   </body>
+</html>

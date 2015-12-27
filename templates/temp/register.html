@@ -1,0 +1,88 @@
+{% extends 'temp/base.html' %}
+{% load static %}
+{% block title %}Register{% endblock %}
+{% load bootstrap3 %}
+{% load bootstrap_toolkit %}
+{% block content %}
+
+<div class="container">
+        <div class="row" align="center">
+        <div class="col-md-5"> 
+           <div class="span5"> 
+                <div class="panel panel-default">  
+                <div class="panel-heading">
+                        <h3><i class="fa fa-calendar"></i>  Create Account</h3>
+                    </div> 
+                <div class="panel-body">     
+                <form class="form-signup" action="/register/" method="post">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{message.tags}} alert-dissmissable">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %} 
+                {% csrf_token %}
+                    <div class="fieldWrapper">
+                        <label>First name:</label><br>
+                        {{ form.first_name }}
+                    </div>    
+                    
+                    <div class="fieldWrapper">
+                        <label>Last name:</label><br>
+                        {{ form.last_name }}
+                    </div>    
+                    
+                    <div class="fieldWrapper">    
+                        {{ form.email.errors }}            
+                        <label>E-mail:</label><br>
+                        {{ form.email }}
+                    </div>    
+                    
+                    <div class="fieldWrapper">
+                    {{form.errors.values.0}}                
+                        <label>Username:</label><br>
+                        {{ form.username }}
+                    </div>
+                    
+                    <div class="fieldWrapper">        
+                        {{form.errors.values.1}}            
+                        <label>Password:</label><br>                   
+                        {{ form.password1 }}
+                    </div>
+                    
+                    <div class="fieldWrapper">           
+                        <label>Password again:</label><br>
+                        {{ form.password2 }}
+                    </div>            
+                    <br></br>
+                    <input type="submit" name="submit" class="btn btn-primary btn-large" value="Create account">
+                </form>
+                </div>
+             </div>   
+            </div>
+
+        </div>
+        <div class="copy-area">
+            <h4>Our Address</h4>
+            <p>We are located at the county offices, Mukurwe-ini</p>
+            <p>
+                <i class="icon-map-marker pull-left"></i> Mwakenya Lane, Nyeri<br>
+                Karaba, 1212,  Kiharo
+            </p>
+            <p>
+                <i class="icon-envelope"></i> &nbsp;info@agridss.com
+            </p>
+            <p>
+                <i class="icon-phone"></i> &nbsp;+254 719 696921
+            </p>
+            <p>
+                <i class="icon-globe"></i> &nbsp;http://www.agridss.com
+            </p>
+        </div>
+      
+        </div>
+
+        <hr>
+    </div>
+{% endblock %}

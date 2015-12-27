@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact Form{% endblock %}
+{% load bootstrap3 %}
+{% load bootstrap_toolkit %}
+{% block content %}
+<div class="container mycontainer">
+        <div class="row" align="center">
+        <div class="col-md-7"> 
+           <div class="span9">
+            <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-calendar"></i>  Contact Us</h4>
+                    </div> 
+                <div class="panel-body">                          
+                <form action="/contact/" method="post">
+                    {% csrf_token %}
+                    {{ form|as_bootstrap }}
+                    <div class="fieldWrapper">
+                        <label>Subject:</label><br>
+                        <input type="text" name="subject">
+                    </div> 
+                    <br>
+                    <div class="fieldWrapper">
+                        <label>Your e-mail (optional):</label><br>
+                        <input type="text" name="email">
+                    </div> 
+                    <br>
+                    <div class="fieldWrapper">
+                        <label>Message: </label><br>
+                        <textarea name="message" rows="10" cols="50"></textarea>
+                    </div> 
+                    <br>
+                    <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+                </form>
+                </div>
+                <hr>
+            </div>
+            </div>
+
+        </div>
+        <div class="copy-area">
+                    <h1>Contacts center</h1>
+                    <p>Your Account is a single username and password for all of the Biztrac Market sites. You can use it to sign in and buy or sell digital goods like WordPress themes, background music, After Effects project files, graphics, photography and much more.</p>
+
+                    <p>If you already have an account on one of the Biztrac Market sites, you can use the contact form to send us a message. Then you already have an Biztrac account and can sign in with your existing username and password. 
+                    </p>
+
+                      <ul class="brand-box">
+                        <ul>
+                          <a href="http://wanjohikibui.blogspot.com" class="brand-box-activeden"><img alt="ActiveDen" src="{% static 'img/live.png' %}" />   Live Blog</a>
+                        </ul>
+                    </ul>
+
+                </div>
+        </div>
+
+        <hr>
+    </div>
+{% endblock %}

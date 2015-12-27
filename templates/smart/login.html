@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% load bootstrap_toolkit %}
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="WanjohiKibui">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap-fluid-adj.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
+  	<link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <title>LADM - {% block title %}The Lands Platform!{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+</head>
+
+<body>
+	<div class="container" align="center">
+		<form class="form-signin" role="form" method="post" action="/ladm/accounts/login/" align="center">
+				{% csrf_token %}
+
+		        {% if bad_details %}
+		        <p><strong>Your username and/or password were incorrect!</strong></p>
+		        {% elif disabled_account %}
+		        <p><strong>Your Rango account is currently disabled; we can't log you in!</strong></p>
+		        {% endif %}
+				<h2 class="form-signin-heading">Please sign in</h2><br>
+				<input class="form-control" placeholder="Username" id="id_username" maxlength="254" name="username" type="text" required autofocus=""/><br> 
+				<input type="password" class="form-control" placeholder="Password" id="id_password" name="password" type="password" required /><br>
+				<button class="btn btn-large btn-primary" type="submit" value="Submit" />Sign in</button>
+				        </form>
+				<p>Forgot Password? Visit <a href="{% url 'django.contrib.auth.views.password_reset' %}">Here</a> </p> 
+				<p>No account? <a href="register/">Sign Up</a> </p>
+	</div>
+	<br>
+	<br>
+	<hr>
+	<footer>
+	        <div id="s5_bottom_pos">
+
+				<div class="moduletable" align="center" ><p><i> In Collaboration with:</i></p>
+					<p><a href="http://www.nasa.gov" target="_blank"><img src="{% static 'img/nasa.jpg' %}" alt="NASA" height="70" width="70" pagespeed_url_hash="3318876463"/></a>   <a href="http://www.rcmrd.org/" target="_blank"><img src="{% static 'img/rcmrd.jpg' %}" alt="RCMRD" height="50" width="50" pagespeed_url_hash="4224035928"/></a>   <a target="_blank" href="http://www.nasa.gov/mission_pages/servir/"><img src="{% static 'img/servir.png' %}" alt="Servir" height="130" width="130" pagespeed_url_hash="1565068874"/></a>    <a target="_blank" href="http://www.usaid.gov"><img src="{% static 'img/usaid.jpg' %}" alt="usaid" height="130" width="130" pagespeed_url_hash="1622250180"/></a>&nbsp;<a href="http://www.dkut.ac.ke" target="_blank"><img src="{% static 'img/dkut.png' %}" alt="DKUT" height="90" width="90" pagespeed_url_hash="1256944460"/></a>   <a href="http://www.nlc.or.ke" target="_blank"><img src="{% static 'img/nlc.png' %}" alt="nlc" height="80" width="80" pagespeed_url_hash="1256944490"/></a></p>		
+				</div>
+	
+
+			</div>				
+			<div class="container" align="center">
+				<p>&copy;The Kenyan LADM.Taking a step towards fulfilment.</p>
+		    </div>
+	</footer
+        
+   
+    <script src="{% static 'js/jquery-2.1.3.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>>

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Customer Details{% endblock %}
+{% load bootstrap3 %}
+{% load bootstrap_toolkit %}
+{% block content %} 
+<div class="container">
+	    <div class="row-fluid">
+	        <div class="span9">
+				<h1>Tell us more about yourself.</h1><br>
+				<p> Fill in the form spaces available and click on 'Send' to submit. </p>
+				<form method="post" action="{% url 'customer_portal' %}" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.media }}
+				{{ field }}
+				{{ form|as_bootstrap }}
+				<button class="btn btn-primary" type="submit">Send</button>
+				</form>
+			</div>
+		</div>
+</div>
+
+{% endblock %}

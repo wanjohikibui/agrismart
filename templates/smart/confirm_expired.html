@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Index{% endblock %}
+
+{% load bootstrap3 %}
+
+{% load bootstrap_toolkit %}
+
+{% block content %}
+
+<div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                <div class="well sidebar-nav"> 
+                 <h3>Navigation links</h3>
+                   <ul>
+                        <li>View Maps <a href="/ladm/search/">Here</a> </li>
+
+                    </ul>     
+                </div>              
+            </div>
+            <div class="span9">
+            	<h1>Registration: Error Message</h1>
+        		<p>Registration process has expired.Please register again <a href="/register/">Here</a> </p>
+            
+        	</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

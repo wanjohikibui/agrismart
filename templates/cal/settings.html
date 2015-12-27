@@ -1,0 +1,20 @@
+{% extends "temp/base.html" %}
+{% load static %}
+{% block title %}Calendar{% endblock %}
+{% load bootstrap3 %}
+{% load bootstrap_toolkit %}
+{% block content %}
+<h4>Settings</h4>
+<form action="" method="POST"> {% csrf_token %}
+Show other users' entries:
+    <input type="checkbox" name="show_users" {% if show_users %}checked{% endif %} />
+<input type="submit" value="Save" />
+</form>
+{% for entry in other_entries %}
+    <div class="entry">
+    {{ entry.creator }} |
+    {{ entry.short|safe }}<br />
+    {{ entry.body }}<br />
+    </div>
+{% endfor %} <br />
+{% endblock %}

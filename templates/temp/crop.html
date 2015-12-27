@@ -1,0 +1,86 @@
+{% extends 'temp/base.html' %}
+{% load django_markdown %}
+<script type="text/css">
+div {
+    border: 10px solid #000000;
+}
+</script>
+{% load bootstrap3 %}
+{% load bootstrap_toolkit %}
+{% block content %}
+<div class="container" style="background-color: #FEFCFF;">
+<div class="row-fluid">
+	<form class="navbar-form navbar-right" action="." method="get" style="float: right;">
+        		<input id="search_box" name="search_box" type="text" placeholder="Search crops" class="form-control">
+        		<button type="submit" class="btn btn-primary btn-large">{% bootstrap_icon "search" %} Search</button>
+        	</form>
+	<div class="span8">
+        	
+        	<br>
+        	<br>
+        	<br>
+        	<h3>Crops Listing</h3>
+
+        	<h4>{{ crops|length }} crop (s) on this page</h4>
+        	<hr>
+        	<ul class="list-group">
+			{% for crop in crops.object_list.all %}								
+						<ul class="list-group">
+						  <ul class="list-group-item">
+						  <h4><a href="{% url "crop_detail" slug=crop.slug %}">{{ crop.name }}</a></h4>
+						  category: {{ crop.category }} | Season: {{ crop.seasons }} | Crop Code: {{ crop.code }} | Approved: {{ crop.approved }}
+						  </ul>
+						  <hr>
+						</ul>
+			{% empty %}
+      		<i><p><h3> No crops available </p>	</h3></i>		
+			{% endfor %}
+			</ul>
+			<hr>
+			<div class="pagination" style="align: center;">
+			    <span class="step-links">
+			        {% if crops.has_previous %}
+			            <h5><a href="?page={{ crops.previous_page_number }}">Previous Page</a></h5>
+			        {% endif %}
+			        <span class="current">
+			            <h5> Page {{ crops.number }} of {{ crops.paginator.num_pages }}.</h5>
+			        </span>
+			        {% if crops.has_next %}
+			            <h5><a href="?page={{ crops.next_page_number }}">Next Page</a></h5>
+			        {% endif %}
+			    </span>
+			</div>
+		
+	</div>
+	<br>
+	<div class="span3">
+		<br>
+		<br>
+		<br>
+        <div class="well sidebar-nav"> 
+            <li class="nav-header">Important links</li>
+            <ul class="nav nav-list">
+	            <li><a href="/map/">View events map</a> </li>
+	            <li><a href="/apply/">Submit applications</a> </li>
+	            <li><a href="/incidences/">Report Incidences</a> </li>
+	            <li><a href="/index/">Feeds</a> </li>
+            </ul>     
+        </div>                 
+	    <div class="well sidebar-nav"> 
+	            <li class="nav-header">Important links</li>
+	            <ul class="nav nav-list">
+		            <li><a href="/map/">View events map</a> </li>
+		            <li><a href="/apply/">Submit applications</a> </li>
+	            </ul>     
+	        </div>                 
+	        <div class="well sidebar-nav"> 
+	            <li class="nav-header">Important links</li>
+	            <ul class="nav nav-list">
+		            <li><a href="/map/">View events map</a> </li>
+		            <li><a href="/apply/">Submit applications</a> </li>
+	            </ul>     
+	        </div>                 
+	    </div>
+</div>
+</div>
+{% endblock %}

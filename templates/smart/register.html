@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Register{% endblock %}
+{% load bootstrap3 %}
+{% load bootstrap_toolkit %}
+{% block content %}
+<div class="container mycontainer">
+        <div class="row" align="center">
+        <div class="col-md-5"> 
+           <div class="span9">
+            <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-calendar"></i>  New Account</h4>
+                    </div> 
+                <div class="panel-body">                          
+                <form class="form-signup" action="/sign_up/" method="post">
+                {% csrf_token %}
+                    <h2>Create your account</h2>
+                    <div class="fieldWrapper">
+                        <label>First name:</label><br>
+                        {{ form.first_name }}
+                    </div>    
+                    <br>
+                    <div class="fieldWrapper">
+                        <label>Last name:</label><br>
+                        {{ form.last_name }}
+                    </div>    
+                    <br>
+                    <div class="fieldWrapper">    
+                        {{ form.email.errors }}            
+                        <label>E-mail:</label><br>
+                        {{ form.email }}
+                    </div>    
+                    <br>
+                    <div class="fieldWrapper">
+                    {{form.errors.values.0}}                
+                        <label>Username:</label><br>
+                        {{ form.username }}
+                    </div>
+                    <br>
+                    <div class="fieldWrapper">        
+                        {{form.errors.values.1}}            
+                        <label>Password:</label><br>                   
+                        {{ form.password1 }}
+                    </div>
+                    <br>
+                    <div class="fieldWrapper">           
+                        <label>Password again:</label><br>
+                        {{ form.password2 }}
+                    </div>            
+                    <br></br>
+                    <input type="submit" name="submit" class="btn btn-primary" value="Create account">
+                </form>
+                </div>
+                <hr>
+            </div>
+            </div>
+
+        </div>
+        <div class="copy-area">
+                    <h1>New account center</h1>
+                    <p>Your Envato Account is a single username and password for all of the Envato Market sites, listed below. You can use it to sign in and buy or sell digital goods like WordPress themes, background music, After Effects project files, graphics, photography and much more.</p>
+
+                    <p>If you already have an account on one of the Biztrac Market sites, sign in with those details. Then you already have an Biztrac account and can sign in with your existing username and password. 
+                    </p>
+
+                      <ul class="brand-box">
+                        <ul>
+                          <a href="http://wanjohikibui.blogspot.com" class="brand-box-activeden"><img alt="ActiveDen" src="{% static 'img/live.png' %}" />   Live Blog</a>
+                        </ul>
+                    </ul>
+
+                </div>
+        </div>
+
+        <hr>
+    </div>
+{% endblock %}

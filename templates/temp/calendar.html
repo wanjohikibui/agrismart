@@ -1,0 +1,53 @@
+{% extends 'temp/base.html' %}
+{% load static %}
+{% block title %}Calendar{% endblock %}
+{% load bootstrap3 %}
+{% load bootstrap_toolkit %}
+ {% load bootstrap_calendar %}
+    {% bootstrap_calendar_css %}
+{% block content %}
+{% bootstrap_calendar_js language="template" %}
+    {% bootstrap_calendar_init language="template" %}
+<div class="container">
+    <div class="row-fluid"> 
+           <div class="span8"> 
+                <div class="panel panel-default">  
+                <div class="panel-heading">
+                        <h3><i class="fa fa-calendar"></i>  Calendar</h3>
+                    </div> 
+                <div class="panel-body">     
+                Calendar controls :
+
+                {% bootstrap_controls 'optional-css-classes' %}
+
+                Calendar:
+
+                {% bootstrap_calendar 'optional-css-classes' %}
+                {% bootstrap_calendar_init language="template" %}
+                </div>
+             </div>  
+             <div class="copy-area">
+            <h4>Our Address</h4>
+            <p>We are located at the county offices, Mukurwe-ini</p>
+            <p>
+                <i class="icon-map-marker pull-left"></i> Mwakenya Lane, Nyeri<br>
+                Karaba, 1212,  Kiharo
+            </p>
+            <p>
+                <i class="icon-envelope"></i> &nbsp;info@agridss.com
+            </p>
+            <p>
+                <i class="icon-phone"></i> &nbsp;+254 719 696921
+            </p>
+            <p>
+                <i class="icon-globe"></i> &nbsp;http://www.agridss.com
+            </p>
+        </div> 
+            </div>
+        
+      
+        </div>
+
+        <hr>
+    </div>
+{% endblock %}

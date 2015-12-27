@@ -1,0 +1,106 @@
+{% extends 'temp/base.html' %}
+{% load static %}
+{% block title %}Incidences{% endblock %}
+{% load bootstrap3 %}
+{% load bootstrap_toolkit %}
+{% block content %}
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+       <section id="contact-page" class="container">
+        <div class="row-fluid">
+
+            <div class="span8">
+                <div class="status alert alert-success" style="display: none"></div>
+
+                <form action="/incidences/" enctype="multipart/form-data" method="post">{% csrf_token %}
+                  <div class="row-fluid">
+                    <div class="span5">
+                       {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{message.tags}} alert-dissmissable">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}  
+                    <p><em>*All fields are required</em></p>                
+                    
+                        <div class="fieldWrapper">
+                            <label>First Name</label><br>
+                            {{ form.first_name }}
+                        </div>    
+                        <div class="fieldWrapper">
+                            <label>Last Name</label><br>
+                            {{ form.last_name }}
+                        </div>    
+                        <div class="fieldWrapper">                
+                            <label>Your email:</label><br>
+                            {{ form.email }}
+                        </div>
+                        <div class="fieldWrapper">                
+                            <label>Your telephone:</label><br>
+                            {{ form.telephone }}
+                        </div>
+                        <div class="fieldWrapper">                
+                            <label>Incidence title:</label><br>
+                            {{ form.incidence_title }}
+                        </div>
+                        <div class="fieldWrapper">                
+                            <label>Category:</label><br>
+                            {{ form.category }}
+                        </div>
+                        <div class="fieldWrapper">                
+                            <label>County:</label><br>
+                            {{ form.county }}
+                        </div>
+                        <div class="fieldWrapper">                
+                            <label>Closest town:</label><br>
+                            {{ form.closest_town }}
+                        </div>
+                    </div>
+                    <div class="span7">
+                         
+                        <div class="fieldWrapper">                
+                            <label>Status:</label><br>
+                            {{ form.status }}
+                        </div>
+                        <br>
+                        <div class="fieldWrapper">
+                            <p>Place the marker where the incidence is</p>
+                            <div id="map" style="height:500px; width:100%; padding-top:100px;"></div>
+                            <input id="coordinates" name="coordinates" value="" type="hidden" />
+                        </div>                
+                        <br>
+                        
+                    </div>
+
+                </div>
+                <input class="btn btn-primary" type="submit" name="submit" class="btn" value="Add Incidence">
+                <p> </p>
+
+            </form>
+        </div>
+
+        <div class="span3">
+            <h4>Our Address</h4>
+            <p>We are located at the county offices, Mukurwe-ini</p>
+            <p>
+                <i class="icon-map-marker pull-left"></i> Mwakenya Lane, Nyeri<br>
+                Karaba, 1212,  Kiharo
+            </p>
+            <p>
+                <i class="icon-envelope"></i> &nbsp;info@agridss.com
+            </p>
+            <p>
+                <i class="icon-phone"></i> &nbsp;+254 719 696921
+            </p>
+            <p>
+                <i class="icon-globe"></i> &nbsp;http://www.agridss.com
+            </p>
+        </div>
+
+    </div>
+<script type="text/javascript" src="{% static 'smart/js/map/incidence.js'%}"></script>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'temp/base.html' %}
+{% load static %}
+{% block title %}Applications{% endblock %}
+{% load bootstrap3 %}
+{% load bootstrap_toolkit %}
+{% block content %}
+    <section class="container">
+        <div class="row-fluid">
+            <div class="span5">
+                <h2>Apply for services</h2>
+                <div class="status alert alert-success" style="display: none"></div>
+
+                <form method="post" action="{% url 'apply' %}" enctype="multipart/form-data">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{message.tags}} alert-dissmissable">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %} 
+                        {% csrf_token %}
+                        {{ form|as_bootstrap }}
+                        <br>
+                        <button class="btn btn-primary" type="submit">Send Application</button>
+                    </form>
+            </div>
+             <div class="span3">
+            <h4>Our Address</h4>
+            <p>We are located at the county offices, Mukurwe-ini</p>
+            <p>
+                <i class="icon-map-marker pull-left"></i> Mwakenya Lane, Nyeri<br>
+                Karaba, 1212,  Kiharo
+            </p>
+            <p>
+                <i class="icon-envelope"></i> &nbsp;info@agridss.com
+            </p>
+            <p>
+                <i class="icon-phone"></i> &nbsp;+254 719 696921
+            </p>
+            <p>
+                <i class="icon-globe"></i> &nbsp;http://www.agridss.com
+            </p>
+        </div>
+    </div>
+
+</section>
+
+<!--/bottom-->
+
+{% endblock %}

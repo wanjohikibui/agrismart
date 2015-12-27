@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Customer Details{% endblock %}
+{% load bootstrap3 %}
+{% load bootstrap_toolkit %}
+{% block content %} 
+<div class="container mycontainer">
+        <div class="row">
+        <div class="col-md-12"> 
+           <div class="span9">
+            <div class="panel panel-default">
+                    <div class="panel-heading" align="center">
+                        <h4><i class="fa fa-calendar"></i>  Permit Application</h4>
+                    </div> 
+                <div class="panel-body">                          
+	                <h1>Fill the application form below;</h1><br>
+					<p> FIll in the form spaces available and click on 'Send Application' to submit. </p>
+					<form method="post" action="{% url 'business_portal' %}" enctype="multipart/form-data">
+						{% csrf_token %}
+						{{ form.media }}
+						{{ field }}
+						{{ form|as_bootstrap }}
+						<br>
+						<button class="btn btn-primary" type="submit">Send Application</button>
+					</form>
+                </div>
+                <hr>
+            </div>
+            </div>
+
+        </div>
+        </div>
+
+        <hr>
+    </div>
+{% endblock %}

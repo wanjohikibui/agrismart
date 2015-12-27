@@ -1,0 +1,75 @@
+<!doctype html>
+<head>
+	{% load staticfiles %}
+	<title>AgriDSS Stations</title>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+	<!-- Mobile meta tags-->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-touch-fullscreen" content="yes" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta http-equiv="cleartype" content="on">
+
+	<!-- CSS: Libs --> 
+	<link rel="stylesheet" href="{% static 'smart/css/lib/bootstrap.css' %}" />
+	<link rel="stylesheet" href="{% static 'smart/css/lib/font-awesome.css' %}" />
+	<link rel="stylesheet" href="{% static 'smart/css/lib/leaflet.css' %}" />
+	<link rel="stylesheet" href="{% static 'smart/css/lib/leaflet.awesome-markers.css' %}" />
+	<!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/lib/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+	<!-- CSS: Custom -->
+	<link rel="stylesheet" href="{% static 'smart/css/styles.css' %}" />
+
+	<!-- JS: Libs -->
+	<script type="text/javascript" src="{% static 'smart/js/lib/jquery.js' %}"></script>
+	<script type="text/javascript" src="{% static 'smart/js/lib/underscore.js' %}"></script>
+	<script type="text/javascript" src="{% static 'smart/js/lib/leaflet.js' %}"></script>
+	<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+	<script type="text/javascript" src="{% static 'smart/js/lib/leaflet.awesome-markers.js' %}"></script>
+	<script type="text/javascript" src="{% static 'smart/js/lib/jquery.geocodify.js' %}"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+</head>
+<body>
+	<!-- Legend -->
+	<div id="legend">
+		<h3>AGriDSS : Stations within an area</h3>
+
+		<div id="geocoder_box" class="geocoder">
+			<form id="geocoder" class="geocoder"></form>
+		</div>
+		
+		<div>Search radius:</div>
+		<div class="form">
+			<select id="radius-selected" name="radius">
+				<option value="5">5 kilometers</option>
+				<option value="10">10 kilometers</option>
+				<option value="25">25 kilometers</option>
+				<option value="50">50 kilometers</option>
+			</select>
+		</div>
+
+		<h3>Results</h3>
+		<p><span id="json_one_results_title"><span id="json_one_results">0</span> <span id="json_one_title">events</span></span> are within the given radius.</p>
+
+		<h3>This Service</h3>
+		<p>This service is useful to the users of this system as they are able to find the events or activities organised by the Ministry happenning in their areas or even the entire county and can therefore plan to attend.</p>
+		<p>To use, enter an address and then enter a radius. Under results will be the number of markers within the given radius. You can also drag the marker on the map; the number will update automatically.</p>
+		<br>
+		<p><a class="btn btn-success btn-large pull-left" href="/">Homepage</a>
+		<a class="btn btn-success btn-large pull-right" href="/accounts/login/">My Account</a></p>
+	</div>
+
+	<!-- Map -->
+	<div id="map"></div>
+
+	<!-- JS: Custom -->
+	<script type="text/javascript" src="{% static 'smart/js/providers.json' %}"></script>
+	<script type="text/javascript" src="{% static 'smart/js/script.js' %}"></script>
+</body>
+</html>

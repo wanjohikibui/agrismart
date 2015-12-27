@@ -1,0 +1,27 @@
+{% extends 'temp/base.html' %}
+
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% load bootstrap_toolkit %}
+{% block content %}
+<div class="container-fluid">
+	    <div class="row-fluid">
+	    	<div class="span3">
+	            <div class="well sidebar-nav">	      
+	            </div>	            
+	        </div>
+	        <div class="span9">   
+				<h1>Verify applications</h1>
+				<p> FIll in the form spaces available and click on 'Send' to submit. </p>
+				<form method="post" action="{% url 'incident' %}" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.media }}
+				{{ field }}
+				{{ form|as_bootstrap}}
+				<button type="submit">Send</button>
+				</form>
+			</div>
+		</div>
+</div>
+
+{% endblock %}

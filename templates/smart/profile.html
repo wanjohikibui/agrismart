@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Customer Details{% endblock %}
+{% load bootstrap3 %}
+{% load bootstrap_toolkit %}
+{% block content %} 
+<div class="container">
+	    <div class="row-fluid">
+	        <div class="span9">
+				<h1>My profile</h1><br>
+				<p> The details can be changed by clicking on "Edit Profile" </p>
+				<form method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.media }}
+				{{ field }}
+				{{ form|as_bootstrap }}
+				</form>
+				<hr>
+			</div>
+		</div>
+</div>
+
+{% endblock %}

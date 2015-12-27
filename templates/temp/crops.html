@@ -1,0 +1,56 @@
+{% extends 'temp/base.html' %}
+{% load django_markdown %}
+{% block content %}
+<div class="container">
+<div class="row-fluid"> 
+        <div class="span8">
+	        <div class="col-sm-8 blog-main">			
+				  <div class="post">
+				    <h2><a href="{% url "crop_detail" slug=object.slug %}">{{ object.name }}</a></h2>
+				    {{ object.description|markdown }}
+				   <h3>Crop Growth Properties</h3>
+				   <p><h4>Rainfall Ranges</h4></p>
+				   <p>{{object.rainfall.all}}</p>
+				   <p><h4>Soil Type</h4></p>
+				   <p>Soil Type : {{object.soil.all}}</p>
+				   <p><h4>Temperature Ranges</h4></p>
+				   <p>Temperature Ranges : {{object.temperature.all}}</p>
+				   <p><h4>Altitude</h4></p>
+				   <p>Altitudes : {{object.altitude.all}}</p>		    
+				  </div>
+				  <a class="btn btn-large btn-primary" href="{% url "cropindex" %}">Back to crop list</a>
+				  <hr>
+				
+			</div>
+		</div>
+		<div class="span3">
+        <div class="well sidebar-nav"> 
+            <li class="nav-header">Important links</li>
+            <ul class="nav nav-list">
+	            <li><a href="/map/">View events map</a> </li>
+	            <li><a href="/apply/">Submit applications</a> </li>
+	            <li><a href="/incidences/">Report Incidences</a> </li>
+	            <li><a href="/index/">Feeds</a> </li>
+            </ul>     
+        </div>                 
+	    <div class="well sidebar-nav"> 
+	            <li class="nav-header">Important links</li>
+	            <ul class="nav nav-list">
+		            <li><a href="/map/">View events map</a> </li>
+		            <li><a href="/apply/">Submit applications</a> </li>
+	            </ul>     
+	    </div>                 
+	    
+	    <div class="well sidebar-nav"> 
+	            <li class="nav-header">Important links</li>
+	            <ul class="nav nav-list">
+		            <li><a href="/map/">View events map</a> </li>
+		            <li><a href="/apply/">Submit applications</a> </li>
+	            </ul>     
+	    </div>                 
+	 
+	    </div>
+	
+</div>
+</div>
+{% endblock %}

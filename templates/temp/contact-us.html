@@ -1,0 +1,76 @@
+{% extends 'temp/base.html' %}
+{% load static %}
+{% block title %}Contacts{% endblock %}
+{% load bootstrap3 %}
+{% load bootstrap_toolkit %}
+{% block content %}
+    <section id="contact-page" class="container">
+        <div class="row-fluid">
+            <h4>Contact Form</h4>
+            <div class="span8">
+                
+                <div class="status alert alert-success" style="display: none"></div>
+
+                <form method="post" action="/contacts/">{% csrf_token %}
+                 {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{message.tags}} alert-dissmissable">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %} 
+                  <div class="row-fluid">
+                    <div class="span5">
+                        <div class="fieldWrapper">
+                            <label>Subject:</label><br>
+                            <input type="text" name="subject" required="required">
+                        </div> 
+                        <br>
+                        <div class="fieldWrapper">
+                            <label>Your e-mail (optional):</label><br>
+                            <input type="text" name="email" required="required">
+                        </div> 
+                    </div>
+                    <div class="span7">
+                        <div class="fieldWrapper">
+                            <label>Message: </label>
+                             <textarea name="message" id="message" required="required" class="input-block-level" rows="8"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <button type="submit" name="submit" value="Submit" class="btn btn-primary btn-large pull-right">Send Message</button>
+                <p> </p>
+
+            </form>
+        </div>
+
+        <div class="span3">
+            <h4>Our Address</h4>
+            <p>We are located at the county offices, Mukurwe-ini</p>
+            <p>
+                <i class="icon-map-marker pull-left"></i> Mwakenya Lane, Nyeri<br>
+                Karaba, 1212,  Kiharo
+            </p>
+            <p>
+                <i class="icon-envelope"></i> &nbsp;info@agridss.com
+            </p>
+            <p>
+                <i class="icon-phone"></i> &nbsp;+254 719 696921
+            </p>
+            <p>
+                <i class="icon-globe"></i> &nbsp;http://www.agridss.com
+            </p>
+        </div>
+
+    </div>
+
+</section>
+<section class="no-margin">
+       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.627414216248!2d37.04827461349182!3d-0.560496280906264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x18288e9a2bb2bf71%3A0x392d86164cf0f88e!2sMUKURWE-INI%2C+Kenya!5e0!3m2!1sen!2sus!4v1440546492619" width="100%" height="450" frameborder="1" style="border:2" allowfullscreen></iframe>
+    </section>
+<!--Bottom-->
+
+<!--/bottom-->
+
+{% endblock %}

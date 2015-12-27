@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<form method="post" action="{% url 'generate' %}">{% csrf_token %}
+<button type="submit">Request interim license</button>
+</form>
+
+{% endblock %}
